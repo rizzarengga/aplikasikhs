@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Aplikasi KHS Mahasiswa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* LOGIN STYLES */
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .login-container h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .login-container p {
+            text-align: center;
+            color: #999;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .error-message {
+            color: #F44336;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+            display: none;
+        }
+
+        .success-message {
+            color: #4CAF50;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+            display: none;
+        }
+
+        .sample-login {
+            background: #f0f4ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .sample-login strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .sample-login p {
+            margin: 3px 0;
+            text-align: left;
+        }
+
+        /* APP STYLES */
+        .app-container {
+            display: none;
+        }
+
+        .app-container.show {
+            display: block;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        .user-info {
+            text-align: right;
+        }
+
+        .user-info p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .logout-btn {
+            background: #F44336;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .logout-btn:hover {
+            background: #d32f2f;
+            transform: translateY(-2px);
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+        }
+
+        #khs {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+            transition: all 0.3s ease;
+        }
+
+        .total-row {
+            background: linear-gradient(to right, #f5f5f5, #f0f0f0) !important;
+            font-weight: 600;
+            color: #333;
+            border-top: 2px solid #667eea;
+        }
+
+        .total-row td {
+            padding: 15px;
+            border-bottom: none;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .ipk-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .info-section {
+            background: #f0f4ff;
+            padding: 15px;
+            border-left: 4px solid #667eea;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        .info-section p {
+            margin: 5px 0;
+            color: #333;
+        }
+
+        #mahasiswa-list {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- LOGIN SECTION -->
+<div id="login-section" class="login-container">
+    <h1>🔐 Login KHS</h1>
+    <p>Masukkan nama dan NIM Anda untuk mengakses KHS</p>
+    
+    <form id="loginForm" onsubmit="handleLogin(event)">
+        <div class="form-group">
+            <label for="username">Nama Mahasiswa</label>
+            <input type="text" id="username" placeholder="Contoh: Ahmad Fauzi" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="password">NIM</label>
+            <input type="password" id="password" placeholder="Contoh: 231001" required>
+        </div>
+        
+        <button type="submit" class="login-btn">Login</button>
+        
+        <div id="error-message" class="error-message"></div>
+        <div id="success-message" class="success-message"></div>
+    </form>
+
+    <div class="sample-login">
+        <strong>📝 Contoh Login:</strong>
+        <p><strong>Nama:</strong> Ahmad Fauzi</p>
+        <p><strong>NIM:</strong> 231001</p>
+        <p style="margin-top: 10px; color: #999; font-size: 12px;">Atau gunakan data mahasiswa lain yang tersedia</p>
+    </div>
+</div>
+
+<!-- APP SECTION -->
+<div id="app-section" class="app-container">
+    <div class="header">
+        <h1>📚 Aplikasi KHS Mahasiswa</h1>
+        <div class="user-info">
+            <p>Selamat Datang,</p>
+            <p style="font-weight: bold; color: #667eea; font-size: 18px;" id="userNameDisplay">-</p>
+            <button class="logout-btn" onclick="handleLogout()">Logout</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="mahasiswa-list"></div>
+        <div id="khs"></div>
+    </div>
+</div>
+
+<script>
+// Deteksi environment dan set API URL
+const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const API_URL = isDevelopment 
+  ? 'http://localhost:3000/api'
+  : 'https://aplikasi-khs.vercel.app/api'; // Update dengan URL Vercel Anda
+
+let useBackend = false;
+
+// Local data (fallback jika backend tidak tersedia)
+const gradeScale = {
+    'A': 4.0, 'A-': 3.7, 'B+': 3.3, 'B': 3.0, 'B-': 2.7, 'C+': 2.3, 'C': 2.0, 'C-': 1.7, 'D': 1.0, 'E': 0.0
+};
+
+const courses = [
+    { code: 'IF701', name: 'Algoritma dan Struktur Data', sks: 3 },
+    { code: 'IF702', name: 'Logika Informatika', sks: 3 },
+    { code: 'IF703', name: 'Kalkulus', sks: 3 },
+    { code: 'IF704', name: 'Statistika', sks: 3 }
+];
+
+const students = [
+    { name: 'Novia Oktavia', nim: '231001', semester: 7, grades: ['A', 'A-', 'B+', 'A'] },
+    { name: 'Putri Nurul', nim: '231002', semester: 7, grades: ['B+', 'B', 'B+', 'A-'] },
+    { name: 'Edward Arjhon', nim: '231003', semester: 7, grades: ['B', 'B-', 'B', 'B+'] },
+    { name: 'Vikry Alfi', nim: '231004', semester: 7, grades: ['A-', 'A', 'A-', 'B+'] },
+    { name: 'Rizza Rangga', nim: '231005', semester: 7, grades: ['B+', 'B+', 'B', 'B'] },
+    { name: 'Ary Alfi', nim: '231006', semester: 7, grades: ['A', 'B+', 'A', 'A-'] },
+    { name: 'Muhammad Zidan', nim: '231007', semester: 7, grades: ['B', 'B', 'B-', 'B'] },
+    { name: 'Mochamadd Fauzi', nim: '231008', semester: 7, grades: ['B+', 'A-', 'B+', 'A'] },
+    { name: 'Tiara Andini', nim: '231009', semester: 7, grades: ['A', 'A', 'A-', 'A'] },
+    { name: 'Siti Fatia', nim: '231010', semester: 7, grades: ['B', 'B+', 'B+', 'B-'] }
+];
+
+// Check backend availability
+async function checkBackend() {
+    try {
+        const res = await fetch(`${API_URL}/health`);
+        if (res.ok) {
+            useBackend = true;
+            console.log('✅ Backend API tersedia');
+        }
+    } catch (e) {
+        useBackend = false;
+        console.log('⚠️ Backend API tidak tersedia, menggunakan local data');
+    }
+}
+
+function calculateIPK(studentIndex) {
+    const student = students[studentIndex];
+    let totalPoints = 0;
+    let totalSKS = 0;
+    
+    student.grades.forEach((grade, i) => {
+        const points = gradeScale[grade] * courses[i].sks;
+        totalPoints += points;
+        totalSKS += courses[i].sks;
+    });
+    
+    return (totalPoints / totalSKS).toFixed(2);
+}
+
+// API function untuk login
+async function loginViaAPI(username, password) {
+    try {
+        const res = await fetch(`${API_URL}/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password })
+        });
+        const data = await res.json();
+        return data;
+    } catch (e) {
+        return null;
+    }
+}
+
+function renderMahasiswaList() {
+    const container = document.getElementById('mahasiswa-list');
+    if (!container) return;
+
+    let html = `
+        <h2 style="color: white; margin-bottom: 12px;">Daftar Mahasiswa (Semester 7)</h2>
+        <div id="list-card" style="background: white; border-radius:12px; padding:16px; box-shadow: 0 8px 30px rgba(0,0,0,0.1);">
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>NIM</th>
+                    <th>Semester</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+    students.forEach((s, i) => {
+        html += `
+            <tr>
+                <td>${i + 1}</td>
+                <td>${s.name}</td>
+                <td>${s.nim}</td>
+                <td>${s.semester}</td>
+                <td><button onclick="showKHS(${i})" style="padding:6px 10px; border-radius:6px; background:#667eea; color:white; border:none; cursor:pointer;">Lihat KHS</button></td>
+            </tr>
+        `;
+    });
+
+    html += `
+            </tbody>
+        </table>
+        </div>
+    `;
+
+    container.innerHTML = html;
+}
+
+function showKHS(index) {
+    const s = students[index];
+    const khs = document.getElementById('khs');
+    if (!khs) return;
+
+    const ipk = calculateIPK(index);
+    let tableRows = '';
+    
+    courses.forEach((course, i) => {
+        tableRows += `
+            <tr>
+                <td>${course.code}</td>
+                <td>${course.name}</td>
+                <td>${course.sks}</td>
+                <td><strong>${s.grades[i]}</strong></td>
+            </tr>
+        `;
+    });
+
+    khs.innerHTML = `
+        <h2 style="color:#333; margin-bottom:8px;">KHS - ${s.name}</h2>
+        <p style="color:#666; margin-bottom:12px;">NIM: ${s.nim} &nbsp; | &nbsp; Semester: ${s.semester}</p>
+        <div style="background:#fff; padding:16px; border-radius:8px;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kode</th>
+                        <th>Mata Kuliah</th>
+                        <th>SKS</th>
+                        <th>Nilai</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${tableRows}
+                </tbody>
+            </table>
+            <div style="margin-top:20px; padding-top:15px; border-top:2px solid #ddd;">
+                <strong style="font-size:16px;">IPK:</strong> <span class="ipk-badge" style="font-size:18px; padding:10px 20px;">${ipk}</span>
+            </div>
+        </div>
+    `;
+}
+
+function handleLogin(event) {
+    event.preventDefault();
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const errorEl = document.getElementById('error-message');
+    const successEl = document.getElementById('success-message');
+
+    if (!username || !password) {
+        if (errorEl) { errorEl.style.display = 'block'; errorEl.textContent = 'Masukkan nama dan NIM.'; }
+        return;
+    }
+
+    if (useBackend) {
+        loginViaAPI(username, password).then(data => {
+            if (!data || !data.success) {
+                if (errorEl) { errorEl.style.display = 'block'; errorEl.textContent = data?.message || 'Mahasiswa tidak ditemukan.'; }
+                return;
+            }
+
+            if (errorEl) { errorEl.style.display = 'none'; }
+            if (successEl) { successEl.style.display = 'block'; successEl.textContent = 'Login berhasil.'; }
+
+            document.getElementById('login-section').style.display = 'none';
+            const app = document.getElementById('app-section');
+            app.classList.add('show');
+
+            const userNameDisplay = document.getElementById('userNameDisplay');
+            if (userNameDisplay) userNameDisplay.textContent = data.data.name;
+
+            renderMahasiswaList();
+            showKHS(data.data.id);
+        });
+    } else {
+        // Fallback ke local authentication
+        const found = students.findIndex(s => 
+            s.name.toLowerCase() === username.toLowerCase() || s.nim === password
+        );
+
+        if (found === -1) {
+            if (errorEl) { errorEl.style.display = 'block'; errorEl.textContent = 'Mahasiswa tidak ditemukan.'; }
+            return;
+        }
+
+        if (errorEl) { errorEl.style.display = 'none'; }
+        if (successEl) { successEl.style.display = 'block'; successEl.textContent = 'Login berhasil.'; }
+
+        document.getElementById('login-section').style.display = 'none';
+        const app = document.getElementById('app-section');
+        app.classList.add('show');
+
+        const userNameDisplay = document.getElementById('userNameDisplay');
+        if (userNameDisplay) userNameDisplay.textContent = students[found].name;
+
+        renderMahasiswaList();
+        showKHS(found);
+    }
+}
+
+function handleLogout() {
+    document.getElementById('login-section').style.display = 'block';
+    const app = document.getElementById('app-section');
+    app.classList.remove('show');
+    document.getElementById('userNameDisplay').textContent = '-';
+    const successEl = document.getElementById('success-message');
+    if (successEl) { successEl.style.display = 'none'; successEl.textContent = ''; }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    checkBackend().then(() => {
+        renderMahasiswaList();
+    });
+});
+</script>
+</body>
+</html>

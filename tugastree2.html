@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Struktur Organisasi Perusahaan</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+
+        .tree {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: fit-content;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        li {
+            position: relative;
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        /* garis vertikal */
+        li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            border-left: 2px solid #555;
+        }
+
+        /* garis horizontal */
+        li::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 15px;
+            border-top: 2px solid #555;
+        }
+
+        /* hapus garis di root */
+        .root::before,
+        .root::after {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Struktur Organisasi Perusahaan</h2>
+
+<div class="tree">
+    <ul>
+        <li class="root"><strong>Direktur</strong>
+            <ul>
+                <li>Manajer Keuangan
+                    <ul>
+                        <li>Staff Akuntansi</li>
+                        <li>Staff Pajak</li>
+                    </ul>
+                </li>
+
+                <li>Manajer Operasional
+                    <ul>
+                        <li>Supervisor Produksi</li>
+                        <li>Supervisor Gudang</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

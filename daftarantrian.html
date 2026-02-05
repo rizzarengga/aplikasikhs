@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Antrian Pembelian Tiket Sepak Bola</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            width: 200px;
+        }
+        button {
+            padding: 8px 12px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        #queueStatus {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sistem Antrian Pembelian Tiket Sepak Bola</h1>
+    <p>Latar Belakang: Panitia penjualan tiket bola menerapkan sistem antrian sederhana dengan maksimal 7 orang dalam antrian fisik di depan loket. Antrian direpresentasikan menggunakan array dengan ukuran tetap 7 slot.</p>
+    
+    <div class="container">
+        <h2>Tambah Supporter ke Antrian</h2>
+        <input type="text" id="supporterName" placeholder="Masukkan nama supporter">
+        <button onclick="addSupporter()">Tambah ke Antrian</button>
+    </div>
+    
+    <div class="container">
+        <h2>Layani Supporter</h2>
+        <button onclick="serveSupporter()">Lakukan Layanan</button>
+    </div>
+    
+    <div class="container">
+        <h2>Lihat Status Antrian</h2>
+        <button onclick="viewQueue()">Tampilkan Status</button>
+        <div id="queueStatus">
+            <p>Status Antrian: <span id="queueCount">0</span>/7 orang</p>
+            <ul id="queueList"></ul>
+        </div>
+    </div>
+
+    <script>
+        // Array untuk merepresentasikan antrian dengan ukuran maksimal 7
+        let queue = [];
+        const maxCapacity = 7;
+
+        // Fungsi untuk menambahkan supporter ke antrian
+        function addSupporter() {
+            const name = document.getElementById('supporterName').value.trim();
+            if (name === '') {
+                alert('Nama supporter tidak boleh kosong!');
+                return;
+            }
+            if (queue.length >= maxCapacity) {
+                alert('Antrian penuh! Maksimal 7 orang.');
+                return;
+            }
+            queue.push(name);
+            document.getElementById('supporterName').value = '';
+            updateQueueDisplay();
+            alert(`Supporter ${name} berhasil ditambahkan ke antrian`);
+        }
+
+        // Fungsi untuk melayani supporter (hapus dari depan antrian)
+        function serveSupporter() {
+            if (queue.length === 0) {
+                alert('Antrian kosong! Tidak ada supporter untuk dilayani.');
+                return;
+            }
+            const served = queue.shift();
+            updateQueueDisplay();
+            alert(`Supporter ${served} telah dilayani dan keluar dari antrian.`);
+        }
+
+        // Fungsi untuk melihat status antrian saat ini
+        function viewQueue() {
+            updateQueueDisplay();
+        }
+
+        // Fungsi untuk memperbarui tampilan antrian
+        function updateQueueDisplay() {
+            const queueList = document.getElementById('queueList');
+            const queueCount = document.getElementById('queueCount');
+            queueList.innerHTML = '';
+            queueCount.textContent = queue.length;
+            queue.forEach((name, index) => {
+                const li = document.createElement('li');
+                li.textContent =` ${index + 1}. ${name}`;
+                queueList.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>

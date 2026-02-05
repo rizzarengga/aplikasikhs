@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Insert Angka Otomatis ke Tree</title>
+  <style>
+    body { font-family: Arial; }
+    ul { list-style-type: none; }
+  </style>
+</head>
+<body>
+
+<h2>Binary Search Tree (Insert Otomatis)</h2>
+
+<button onclick="insertOtomatis()">Insert Otomatis</button>
+<button onclick="tampilkan()">Tampilkan Tree</button>
+
+<div id="output"></div>
+
+<script>
+  class TreeNode {
+    constructor(value) {
+      this.value = value;
+      this.left = null;
+      this.right = null;
+    }
+  }
+
+  class BinarySearchTree {
+    constructor() {
+      this.root = null;
+    }
+
+    insert(value) {
+      const newNode = new TreeNode(value);
+      if (!this.root) {
+        this.root = newNode;
+        return;
+      }
+
+      let current = this.root;
+      while (true) {
+        if (value < current.value) {
+          if (!current.left) {
+            current.left = newNode;
+            return;
+          }
+          current = current.left;
+        } else {
+          if (!current.right) {
+            current.right = newNode;
+            return;
+          }
+          current = current.right;
+        }
+      }
+    }
+  }
+
+  const tree = new BinarySearchTree();
+
+  function insertOtomatis() {
+    const angka = Math.floor(Math.random() * 100);
+    tree.insert(angka);
+    alert("Angka dimasukkan: " + angka);
+  }
+
+  function tampilkan() {
+    const output = document.getElementById("output");
+    output.innerHTML = tampilkanNode(tree.root);
+  }
+
+  function tampilkanNode(node) {
+    if (!node) return "";
+    return `
+      <ul>
+        <li>${node.value}
+          ${tampilkanNode(node.left)}
+          ${tampilkanNode(node.right)}
+        </li>
+      </ul>
+    `;
+  }
+</script>
+
+</body>
+</html>

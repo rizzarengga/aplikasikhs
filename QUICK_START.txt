@@ -1,0 +1,57 @@
+════════════════════════════════════════════════════════════════════
+           APLIKASI KHS SIAP! IKUTI 3 LANGKAH INI:
+════════════════════════════════════════════════════════════════════
+
+LANGKAH 1: BUKA APLIKASI
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Double-click file: launch.bat
+  
+  Atau buka Command Prompt dan ketik:
+  cd C:\Users\user\belajar coding
+  python server.py
+
+LANGKAH 2: TUNGGU SERVER BERJALAN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Tunggu sampai muncul pesan:
+  "Server berhasil dijalankan"
+  
+  Browser akan otomatis terbuka (jika pakai launch.bat)
+
+LANGKAH 3: LOGIN & GUNAKAN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Gunakan data login:
+  - Nama: Ahmad Fauzi
+  - NIM: 231001
+  
+  Atau coba mahasiswa lain yang tersedia
+
+════════════════════════════════════════════════════════════════════
+
+UNTUK BAGIKAN KE ORANG LAIN:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  1. Jalankan launch.bat (di komputer Anda)
+  
+  2. Cari baris di console dengan format IP
+  
+  3. Bagikan URL tersebut ke teman
+  
+  4. Teman HARUS di WiFi yang SAMA
+  
+  5. Teman buka URL di browser mereka
+
+════════════════════════════════════════════════════════════════════
+
+PROBLEM? BACA INI:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Lihat file: PANDUAN.md (berisi FAQ dan troubleshooting)
+
+════════════════════════════════════════════════════════════════════
+
+SELESAI! APLIKASI SIAP DIGUNAKAN DAN DIBAGIKAN!
+
+════════════════════════════════════════════════════════════════════

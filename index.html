@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi KHS - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 600px;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            color: #667eea;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .btn {
+            padding: 16px 24px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.05em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-align: center;
+        }
+        
+        .btn-app {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-app:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-guide {
+            background: #f0f4ff;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .btn-guide:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-doc {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 2px solid #4caf50;
+        }
+        
+        .btn-doc:hover {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .info-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            color: #e65100;
+            font-size: 0.95em;
+        }
+        
+        .footer {
+            background: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+            color: #999;
+            font-size: 0.9em;
+            border-top: 1px solid #ddd;
+        }
+        
+        .emoji {
+            font-size: 1.2em;
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 KHS Mahasiswa</h1>
+            <p>Aplikasi Kartu Hasil Studi</p>
+        </div>
+        
+        <div class="content">
+            <div class="info-box">
+                <strong>✅ Server Status:</strong> Berjalan dan siap diakses
+            </div>
+            
+            <!-- Main Action -->
+            <div class="section">
+                <div class="section-title">🚀 Mulai Sekarang</div>
+                <div class="button-group">
+                    <a href="aplikasi.html" class="btn btn-app">
+                        <span class="emoji">📱</span> Buka Aplikasi
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Documentation -->
+            <div class="section">
+                <div class="section-title">📖 Dokumentasi & Panduan</div>
+                <div class="button-group">
+                    <a href="GUIDE.html" class="btn btn-guide">
+                        <span class="emoji">📋</span> Baca Panduan Lengkap
+                    </a>
+                    <a href="README.md" class="btn btn-doc">
+                        <span class="emoji">📄</span> README
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Quick Info -->
+            <div class="section">
+                <div class="section-title">💡 Info Cepat</div>
+                <p style="color: #666; line-height: 1.8; font-size: 0.95em;">
+                    <strong>Contoh Login:</strong><br>
+                    Nama: <code style="background: #f0f0f0; padding: 2px 5px;">Ahmad Fauzi</code><br>
+                    NIM: <code style="background: #f0f0f0; padding: 2px 5px;">231001</code>
+                </p>
+            </div>
+            
+            <!-- Share Info -->
+            <div class="section">
+                <div class="section-title">🌐 Bagikan Akses</div>
+                <p style="color: #666; font-size: 0.95em; line-height: 1.8;">
+                    Untuk membagikan ke orang lain di WiFi yang sama:
+                    <br><br>
+                    1. Lihat IP di console<br>
+                    2. Bagikan URL: <code style="background: #f0f0f0; padding: 2px 5px;">http://[IP]:8000</code><br>
+                    3. Teman buka URL di browser mereka
+                </p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>✨ Aplikasi KHS Mahasiswa | Versi 1.0 | 2026</p>
+        </div>
+    </div>
+</body>
+</html>

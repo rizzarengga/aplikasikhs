@@ -1,0 +1,84 @@
+╔════════════════════════════════════════════════════════════════════════╗
+║                  CHECKLIST SETUP APLIKASI KHS                          ║
+║                  Aplikasi Siap untuk Di-Share!                          ║
+╚════════════════════════════════════════════════════════════════════════╝
+
+STEP-BY-STEP GUIDE:
+
+📋 PERSIAPAN AWAL
+  ☐ Pastikan semua file ada di 1 folder:
+    └─ aplikasi.html
+    └─ script.js
+    └─ server.py
+    └─ run_server.bat
+    └─ PANDUAN.md
+    └─ README.md
+
+🔧 INSTALASI PYTHON (Jika belum punya)
+  ☐ Download Python dari: https://www.python.org/downloads/
+  ☐ Install Python
+  ☐ PENTING: Centang "Add Python to PATH"
+  ☐ Restart komputer Anda
+
+🚀 MENJALANKAN SERVER - METODE 1 (Rekomendasi)
+  ☐ Double-click file: run_server.bat
+  ☐ Command Prompt akan terbuka
+  ☐ Tunggu sampai muncul "Server berjalan..."
+  ☐ Catat IP yang ditampilkan (contoh: 192.168.1.100)
+
+🚀 MENJALANKAN SERVER - METODE 2 (Manual)
+  ☐ Buka Command Prompt
+  ☐ Ketik: cd C:\Users\user\belajar coding
+  ☐ Ketik: python server.py
+  ☐ Tunggu sampai muncul "Server berjalan..."
+
+🌐 AKSES DARI KOMPUTER SENDIRI
+  ☐ Buka browser (Chrome, Firefox, Edge, dll)
+  ☐ Ketik di address bar: http://localhost:8000
+  ☐ Halaman login akan muncul
+
+📱 AKSES DARI DEVICE LAIN (SHARE)
+  ☐ Pastikan device terhubung ke WiFi/Jaringan yang SAMA
+  ☐ Ambil IP dari console server (contoh: 192.168.1.100)
+  ☐ Di device lain, buka: http://192.168.1.100:8000
+  ☐ Halaman login akan muncul
+
+🔐 LOGIN
+  ☐ Gunakan Nama: Ahmad Fauzi
+  ☐ Gunakan NIM: 231001
+  ☐ Klik tombol "Login"
+  ☐ Lihat KHS mahasiswa tersebut
+
+✅ TESTING
+  ☐ Coba login dengan mahasiswa lain
+  ☐ Klik Logout dan login ulang
+  ☐ Refresh halaman (F5) - pastikan tetap login
+  ☐ Coba akses dari device lain di WiFi yang sama
+
+⚠️ JIKA ADA MASALAH
+  ☐ Lihat pesan error di console
+  ☐ Baca file PANDUAN.md untuk troubleshooting
+  ☐ Pastikan port 8000 tidak digunakan aplikasi lain
+  ☐ Pastikan firewall Windows tidak memblokir
+
+📊 VERIFIKASI FINAL
+  ☐ Server berjalan tanpa error
+  ☐ Bisa akses dari localhost
+  ☐ Bisa akses dari device lain
+  ☐ Login berfungsi dengan benar
+  ☐ Data KHS menampilkan dengan benar
+  ☐ Logout berfungsi dengan benar
+
+🎉 SELESAI!
+  ☐ Aplikasi siap di-share ke teman/kolega
+  ☐ Bagikan URL: http://[IP_ANDA]:8000
+  ☐ Teman bisa login dan lihat data KHS
+
+╔════════════════════════════════════════════════════════════════════════╗
+║ CATATAN PENTING:                                                       ║
+║ • Server hanya bisa diakses saat program run_server.bat masih berjalan │
+║ • Tekan Ctrl+C untuk stop server                                       │
+║ • Jangan tutup Command Prompt saat aplikasi sedang digunakan           │
+║ • Untuk akses ke device lain, harus WiFi yang sama                     │
+║ • Data session hilang jika logout atau refresh                         │
+╚════════════════════════════════════════════════════════════════════════╝

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Tree - Klik Node</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
+    ul { list-style-type: none; }
+    li { cursor: pointer; margin: 6px 0; }
+    li span {
+      padding: 4px 8px;
+      border-radius: 4px;
+      background-color: #f0f0f0;
+      display: inline-block;
+    }
+    li span:hover {
+      background-color: #e0f0ff;
+    }
+    #info {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      width: 400px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+    }
+    /* Memberi jarak visual untuk struktur bertingkat */
+    ul ul { margin-left: 20px; border-left: 1px dashed #bbb; padding-left: 15px; }
+  </style>
+</head>
+<body>
+
+<h2>🌳 Struktur Tree Lengkap</h2>
+
+<ul>
+  <li>
+    <span onclick="showInfo('Root', 'Node utama / akar dari seluruh struktur')">Root</span>
+    <ul>
+      <li>
+        <span onclick="showInfo('Child 1', 'Anak pertama dari Root')">Child 1</span>
+        <ul>
+          <li><span onclick="showInfo('Leaf 1', 'Node daun tanpa anak')">Leaf 1</span></li>
+          <li><span onclick="showInfo('Leaf 2', 'Node daun tanpa anak')">Leaf 2</span></li>
+        </ul>
+      </li>
+
+      <li>
+        <span onclick="showInfo('Child 2', 'Anak kedua dari Root')">Child 2</span>
+      </li>
+
+      <li>
+        <span onclick="showInfo('Child 3', 'Cabang baru ketiga')">Child 3</span>
+        <ul>
+          <li><span onclick="showInfo('Leaf 3A', 'Bagian buah pertama dari Child 3')">Leaf 3A</span></li>
+          <li><span onclick="showInfo('Leaf 3B', 'Bagian buah kedua dari Child 3')">Leaf 3B</span></li>
+          <li><span onclick="showInfo('Leaf 3C', 'Bagian buah ketiga dari Child 3')">Leaf 3C</span></li>
+        </ul>
+      </li>
+
+      <li>
+        <span onclick="showInfo('Child 4', 'Cabang baru keempat')">Child 4</span>
+        <ul>
+          <li><span onclick="showInfo('Data Alpha', 'Data pertama pada Child 4')">Data Alpha</span></li>
+          <li><span onclick="showInfo('Data Beta', 'Data kedua pada Child 4')">Data Beta</span></li>
+          <li><span onclick="showInfo('Data Gamma', 'Data ketiga pada Child 4')">Data Gamma</span></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3>📌 Info Node</h3>
+<div id="info">
+  Klik salah satu node untuk melihat informasi
+</div>
+
+<script>
+  function showInfo(nama, deskripsi) {
+    document.getElementById("info").innerHTML = `
+      <strong>Nama Node:</strong> ${nama}<br>
+      <strong>Deskripsi:</strong> ${deskripsi}
+    `;
+  }
+</script>
+
+</body>
+</html>

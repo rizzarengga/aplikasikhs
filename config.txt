@@ -1,0 +1,36 @@
+# Konfigurasi Aplikasi KHS Mahasiswa
+
+## Server Configuration
+PORT = 8000
+HOST = "0.0.0.0"  # Biarkan default untuk akses dari network manapun
+
+## App Configuration
+APP_NAME = "Aplikasi KHS Mahasiswa"
+VERSION = "1.0.0"
+
+## Session Configuration
+SESSION_TIMEOUT = 3600  # seconds (1 hour)
+CACHE_ENABLED = False
+
+## Database (jika ditambah di masa depan)
+# DB_TYPE = "sqlite"
+# DB_PATH = "data/mahasiswa.db"
+
+## Security (untuk production)
+# ENABLE_HTTPS = False
+# SSL_CERT = "cert.pem"
+# SSL_KEY = "key.pem"
+
+## Logging
+LOG_LEVEL = "INFO"
+LOG_FILE = "server.log"
+
+## Features
+ENABLE_REGISTRATION = False  # Set True jika ingin fitur registrasi
+ENABLE_EXPORT_PDF = False    # Set True jika ingin export ke PDF
+ENABLE_EMAIL_NOTIFICATION = False  # Set True jika ingin notifikasi email
+
+## Notes
+# Untuk development: jalankan dengan: python server.py
+# Untuk production: gunakan gunicorn atau uWSGI
+# Pastikan firewall memungkinkan akses port 8000

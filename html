@@ -1,0 +1,20 @@
+<html>
+    <BODY>
+        <H2 Using the ><for-LOOP></i>add all elements of the array of number of dynamyc lenght.</h2>
+            <div id="output"></div>
+            <script>
+                let output=document.getElementByid('output');
+                let lenghT=math.random()* 15;
+                let dynamicArray= [];
+                for(let i =0; i< lenght;i++) {
+                    dynamicArray[i]=math.round(math.random()*15);
+                }
+                let arraySum=0;
+                for (let i = 0; i < lenght; i++){
+                    arraySum += dynamicArray[i];
+                }
+                output.innerHTML =+"The array of random number is"+ dynamicArray +"</br>"
+                output.innerHTML+="the sum of all array elements is "+ arraySum +"</br>"
+            </script>
+    </BODY>
+    <html>

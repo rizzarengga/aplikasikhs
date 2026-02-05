@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Insert Manual ke Tree</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    ul {
+      list-style-type: none;
+      margin-left: 20px;
+    }
+    li {
+      margin: 4px 0;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Insert Manual ke Binary Search Tree</h2>
+
+<input type="number" id="angka" placeholder="Masukkan angka">
+<button onclick="insertManual()">Insert</button>
+<button onclick="tampilkanTree()">Tampilkan Tree</button>
+
+<hr>
+
+<div id="output"></div>
+
+<script>
+  class TreeNode {
+    constructor(value) {
+      this.value = value;
+      this.left = null;
+      this.right = null;
+    }
+  }
+
+  class BinarySearchTree {
+    constructor() {
+      this.root = null;
+    }
+
+    insert(value) {
+      const newNode = new TreeNode(value);
+
+      if (!this.root) {
+        this.root = newNode;
+        return;
+      }
+
+      let current = this.root;
+      while (true) {
+        if (value < current.value) {
+          if (!current.left) {
+            current.left = newNode;
+            return;
+          }
+          current = current.left;
+        } else {
+          if (!current.right) {
+            current.right = newNode;
+            return;
+          }
+          current = current.right;
+        }
+      }
+    }
+  }
+
+  const tree = new BinarySearchTree();
+
+  function insertManual() {
+    const input = document.getElementById("angka");
+    const value = parseInt(input.value);
+
+    if (isNaN(value)) {
+      alert("Masukkan angka terlebih dahulu!");
+      return;
+    }
+
+    tree.insert(value);
+    alert("Angka " + value + " berhasil dimasukkan");
+
+    input.value = "";
+  }
+
+  function tampilkanTree() {
+    const output = document.getElementById("output");
+    output.innerHTML = tampilkanNode(tree.root);
+  }
+
+  function tampilkanNode(node) {
+    if (!node) return "";
+    return `
+      <ul>
+        <li>${node.value}
+          ${tampilkanNode(node.left)}
+          ${tampilkanNode(node.right)}
+        </li>
+      </ul>
+    `;
+  }
+</script>
+
+</body>
+</html>

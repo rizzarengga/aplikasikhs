@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Aplikasi KHS Mahasiswa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        h2 {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Aplikasi KHS Mahasiswa</h1>
+
+<div id="khs"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
+const mahasiswa = [
+    {
+        nama: "Ahmad Fauzi",
+        nim: "231001",
+        nilai: [
+            { matkul: "Matematika", sks: 3, nilai: "A" },
+            { matkul: "Pemrograman", sks: 4, nilai: "A" },
+            { matkul: "Basis Data", sks: 3, nilai: "B" }
+        ]
+    },
+    {
+        nama: "Budi Santoso",
+        nim: "231002",
+        nilai: [
+            { matkul: "Matematika", sks: 3, nilai: "B" },
+            { matkul: "Pemrograman", sks: 4, nilai: "B" },
+            { matkul: "Basis Data", sks: 3, nilai: "C" }
+        ]
+    },
+    {
+        nama: "Citra Lestari",
+        nim: "231003",
+        nilai: [
+            { matkul: "Matematika", sks: 3, nilai: "A" },
+            { matkul: "Pemrograman", sks: 4, nilai: "B" },
+            { matkul: "Basis Data", sks: 3, nilai: "A" }
+        ]
+    },
+    {
+        nama: "Deni Pratama",
+        nim: "231004",
+        nilai: [
+            { matkul: "Matematika", sks: 3, nilai: "C" },
+            { matkul: "Pemrograman", sks: 4, nilai: "B" },
+            { matkul: "Basis Data", sks: 3, nilai: "B" }
+        ]
+    },
+    {
+        nama: "Eka Putri",
+        nim: "231005",
+        nilai: [
+            { matkul: "Matematika", sks: 3, nilai: "A" },
+            { matkul: "Pemrograman", sks: 4, nilai: "A" },
+            { matkul: "Basis Data", sks: 3, nilai: "A" }
+        ]
+    },
+    {
+        nama: "Fajar Hidayat",
+        nim: "231006",
+        nilai: [
+            { matkul: "Matematika", sks: 3, nilai: "B" },
+            { matkul: "Pemrograman", sks: 4, nilai: "C" },
+            { matkul: "Basis Data", sks: 3, nilai: "B" }
+        ]
+    },
+    {
+        nama: "Gina Aulia",
+        nim: "231007",
+        nilai: [
+            { matkul: "Matematika", sks: 3, nilai: "A" },
+            { matkul: "Pemrograman", sks: 4, nilai: "B" },
+            { matkul: "Basis Data", sks: 3, nilai: "B" }
+        ]
+    },
+    {
+        nama: "Hadi Kurnia",
+        nim: "231008",
+        nilai: [
+            { matkul: "Matematika", sks: 3, nilai: "C" },
+            { matkul: "Pemrograman", sks: 4, nilai: "C" },
+            { matkul: "Basis Data", sks: 3, nilai: "B" }
+        ]
+    },
+    {
+        nama: "Intan Maharani",
+        nim: "231009",
+        nilai: [
+            { matkul: "Matematika", sks: 3, nilai: "A" },
+            { matkul: "Pemrograman", sks: 4, nilai: "A" },
+            { matkul: "Basis Data", sks: 3, nilai: "B" }
+        ]
+    },
+    {
+        nama: "Joko Widodo",
+        nim: "231010",
+        nilai: [
+            { matkul: "Matematika", sks: 3, nilai: "B" },
+            { matkul: "Pemrograman", sks: 4, nilai: "A" },
+            { matkul: "Basis Data", sks: 3, nilai: "A" }
+        ]
+    }
+];
+
+function bobotNilai(nilai) {
+    switch (nilai) {
+        case "A": return 4;
+        case "B": return 3;
+        case "C": return 2;
+        case "D": return 1;
+        default: return 0;
+    }
+}
+
+let output = "";
+
+mahasiswa.forEach(mhs => {
+    let totalSKS = 0;
+    let totalBobot = 0;
+
+    output += `<h2>${mhs.nama} (NIM: ${mhs.nim})</h2>`;
+    output += `
+        <table>
+            <tr>
+                <th>Mata Kuliah</th>
+                <th>SKS</th>
+                <th>Nilai</th>
+                <th>Bobot</th>
+            </tr>
+    `;
+
+    mhs.nilai.forEach(n => {
+        let bobot = bobotNilai(n.nilai);
+        totalSKS += n.sks;
+        totalBobot += n.sks * bobot;
+
+        output += `
+            <tr>
+                <td>${n.matkul}</td>
+                <td>${n.sks}</td>
+                <td>${n.nilai}</td>
+                <td>${bobot}</td>
+            </tr>
+        `;
+    });
+
+    let ipk = (totalBobot / totalSKS).toFixed(2);
+
+    output += `
+        <tr>
+            <th colspan="3">IPK</th>
+            <th>${ipk}</th>
+        </tr>
+        </table>
+    `;
+});
+
+document.getElementById("khs").innerHTML = output;
