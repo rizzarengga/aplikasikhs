@@ -1,16 +1,37 @@
-import express from 'express';
-import cors from 'cors';
-import bodyParser from 'body-parser';
+const express = require('express');
+const cors = require('cors');
 
 const app = express();
 
 // Middleware
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Import data
-const { students, courses, gradeScale } = require('../backend/data/students.js');
+// Data
+const gradeScale = {
+    'A': 4.0, 'A-': 3.7, 'B+': 3.3, 'B': 3.0, 'B-': 2.7, 'C+': 2.3, 'C': 2.0, 'C-': 1.7, 'D': 1.0, 'E': 0.0
+};
+
+const courses = [
+    { code: 'IF701', name: 'Algoritma dan Struktur Data', sks: 3 },
+    { code: 'IF702', name: 'Logika Informatika', sks: 3 },
+    { code: 'IF703', name: 'Kalkulus', sks: 3 },
+    { code: 'IF704', name: 'Statistika', sks: 3 }
+];
+
+const students = [
+    { name: 'Novia Oktavia', nim: '231001', semester: 7, grades: ['A', 'A-', 'B+', 'A'] },
+    { name: 'Putri Nurul', nim: '231002', semester: 7, grades: ['B+', 'B', 'B+', 'A-'] },
+    { name: 'Edward Arjhon', nim: '231003', semester: 7, grades: ['B', 'B-', 'B', 'B+'] },
+    { name: 'Vikry Alfi', nim: '231004', semester: 7, grades: ['A-', 'A', 'A-', 'B+'] },
+    { name: 'Rizza Rangga', nim: '231005', semester: 7, grades: ['B+', 'B+', 'B', 'B'] },
+    { name: 'Ary Alfi', nim: '231006', semester: 7, grades: ['A', 'B+', 'A', 'A-'] },
+    { name: 'Muhammad Zidan', nim: '231007', semester: 7, grades: ['B', 'B', 'B-', 'B'] },
+    { name: 'Mochamadd Fauzi', nim: '231008', semester: 7, grades: ['B+', 'A-', 'B+', 'A'] },
+    { name: 'Tiara Andini', nim: '231009', semester: 7, grades: ['A', 'A', 'A-', 'A'] },
+    { name: 'Siti Fatia', nim: '231010', semester: 7, grades: ['B', 'B+', 'B+', 'B-'] }
+];
 
 // Helper
 function calculateIPK(studentIndex) {
@@ -27,12 +48,11 @@ function calculateIPK(studentIndex) {
     return (totalPoints / totalSKS).toFixed(2);
 }
 
-// Health check
+// Routes
 app.get('/api/health', (req, res) => {
     res.json({ success: true, message: 'Backend is running' });
 });
 
-// GET all students
 app.get('/api/students', (req, res) => {
     const studentList = students.map((s, i) => ({
         index: i,
@@ -44,7 +64,6 @@ app.get('/api/students', (req, res) => {
     res.json({ success: true, data: studentList });
 });
 
-// GET single student KHS
 app.get('/api/students/:id', (req, res) => {
     const id = parseInt(req.params.id);
     if (id < 0 || id >= students.length) {
@@ -74,7 +93,6 @@ app.get('/api/students/:id', (req, res) => {
     });
 });
 
-// POST Login
 app.post('/api/login', (req, res) => {
     const { username, password } = req.body;
 
@@ -103,15 +121,12 @@ app.post('/api/login', (req, res) => {
     });
 });
 
-// GET all courses
 app.get('/api/courses', (req, res) => {
     res.json({ success: true, data: courses });
 });
 
-// 404 handler
 app.use((req, res) => {
     res.status(404).json({ success: false, message: 'Endpoint tidak ditemukan' });
 });
 
-// Export untuk Vercel
-export default app;
+module.exports = app;

@@ -1,0 +1,10 @@
+{
+  "name": "aplikasi-khs-api",
+  "version": "1.0.0",
+  "description": "API untuk Aplikasi KHS",
+  "main": "api/index.js",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  }
+}
